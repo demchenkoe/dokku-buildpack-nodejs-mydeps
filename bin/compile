@@ -90,6 +90,12 @@ fi
   npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
 )
 
+if [ -f $build_dir/gulpfile.js ]; then
+  status "Build assests with gulp"
+  npm install -g gulp
+  gulp
+fi
+
 # Persist goodies like node-version in the slug
 mkdir -p $build_dir/.heroku
 
@@ -134,12 +140,6 @@ fi
 status "Building runtime environment"
 mkdir -p $build_dir/.profile.d
 echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/nodejs.sh
-
-if [ -f $build_dir/gulpfile.js ]; then
-  status "Build assests with gulp"
-  npm install -g gulp-cli
-  gulp
-fi
 
 # Post package.json to nomnom service
 # Use a subshell so failures won't break the build.
