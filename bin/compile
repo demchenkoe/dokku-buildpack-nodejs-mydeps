@@ -92,7 +92,7 @@ fi
 
 if [ -f $build_dir/gulpfile.js ]; then
   status "Build assests with gulp"
-  npm install -g gulp
+  npm install gulp
   gulp
 fi
 
