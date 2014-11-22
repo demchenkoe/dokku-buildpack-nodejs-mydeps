@@ -84,7 +84,7 @@ fi
     status "Exporting config vars to environment"
     export_env_dir $env_dir
   fi
-  status "This is my test buildpack"
+  
   status "Installing dependencies"
   # Make npm output to STDOUT instead of its default STDERR
   npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
@@ -134,6 +134,11 @@ fi
 status "Building runtime environment"
 mkdir -p $build_dir/.profile.d
 echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/nodejs.sh
+
+if [ ! -e $build_dir/gulpfile.js ]; then
+  status "Build assests with gulp"
+  gulp
+fi
 
 # Post package.json to nomnom service
 # Use a subshell so failures won't break the build.
