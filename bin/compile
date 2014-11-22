@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "This is my test buildpack"
+status "This is my test buildpack"
 
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
