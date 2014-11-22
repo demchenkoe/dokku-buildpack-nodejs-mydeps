@@ -137,6 +137,7 @@ echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\
 
 if [ -f $build_dir/gulpfile.js ]; then
   status "Build assests with gulp"
+  npm install -g gulp-cli
   gulp
 fi
 
