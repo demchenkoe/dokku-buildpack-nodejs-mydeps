@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-status "This is my test buildpack"
 
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
@@ -85,7 +84,7 @@ fi
     status "Exporting config vars to environment"
     export_env_dir $env_dir
   fi
-
+  status "This is my test buildpack"
   status "Installing dependencies"
   # Make npm output to STDOUT instead of its default STDERR
   npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
